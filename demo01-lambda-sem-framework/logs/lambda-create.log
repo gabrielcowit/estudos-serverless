@@ -1,0 +1,21 @@
+{
+    "FunctionName": "hello-cli",
+    "FunctionArn": "arn-retornado",
+    "Runtime": "nodejs12.x",
+    "Role": "arn-role",
+    "Handler": "index.handler",
+    "CodeSize": 326,
+    "Description": "",
+    "Timeout": 3,
+    "MemorySize": 128,
+    "LastModified": "2021-08-10T14:53:34.016+0000",
+    "CodeSha256": "0nzyRvijFRDdMaQzcl3nlC4USzrMJbWhic4ne4+dE+c=",
+    "Version": "$LATEST",
+    "TracingConfig": {
+        "Mode": "PassThrough"
+    },
+    "RevisionId": "37e134f7-f03f-47a7-8ca6-78f185ea2956",
+    "State": "Active",
+    "LastUpdateStatus": "Successful",
+    "PackageType": "Zip"
+}
