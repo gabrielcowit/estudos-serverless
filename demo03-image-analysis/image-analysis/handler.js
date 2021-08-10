@@ -1,12 +1,21 @@
 'use strict';
 
-const { promises: { readFile } } = require('fs')
+const { get } = require('axios')
 
 class Handler {
 
   constructor({ rekoSvc, translatorSvc }) {
     this.rekoSvc = rekoSvc
     this.translatorSvc = translatorSvc
+  }
+
+  async getImageBuffer(imageUrl) {
+    const response = await get(imageUrl, {
+      responseType: 'arraybuffer'
+    })
+
+    const buffer = Buffer.from(response.data, 'base64')
+    return buffer
   }
 
   async detectImageLabels(buffer) {
@@ -62,10 +71,14 @@ class Handler {
 
     try {
 
-      const imgBuffer = await readFile('./images/dog.jpg')
+      //const imgBuffer = await readFile('./images/dog.jpg')
+
+      const { imageUrl } = event.queryStringParameters 
+      console.log('Downloading image...')
+      const buffer = await this.getImageBuffer(imageUrl)
       
       console.log('Detecting labels...')
-      const {names, workingItems} = await this.detectImageLabels(imgBuffer)
+      const {names, workingItems} = await this.detectImageLabels(buffer)
 
       console.log('Translating to Portuguese...')
       const texts = await this.translateText(names)
