@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports.scheduler = async (event) => {
+  console.log("***evn", process.env)
   return {
     statusCode: 200,
     body: JSON.stringify(
